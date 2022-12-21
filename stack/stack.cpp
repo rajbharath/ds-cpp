@@ -4,7 +4,7 @@ class Stack {
   private:
     int maxSize = 2;
     int* elements;
-    int size = 0;
+    int top = 0;
     void doubleSize();
     void copy(int* src, int* dest);
     int isFull();
@@ -24,17 +24,17 @@ Stack::Stack()
 
 int Stack::isFull()
 {
-    return size == maxSize;
+    return top == maxSize;
 }
 int Stack::isEmpty()
 {
-    return size == 0;
+    return top == 0;
 }
 
 void Stack::copy(int* src, int* dest) {
     // copy
     std::cout << "\n";
-    for (int i = 0; i < size; i++)
+    for (int i = 0; i < top; i++)
     {
       std::cout << "copying: " << *(src + i);
       dest[i] = *(src + i);
@@ -54,15 +54,15 @@ void Stack::push(int el) {
     doubleSize();
   }
   std::cout << "\n"
-            << "size: " << size 
+            << "size: " << top 
             << "element: " << el 
             << "\n";
-  elements[size++] = el;
+  elements[top++] = el;
 }
 
 void Stack::display()  {
   std::cout << "\n";
-  for(int i=0; i < size; i++) {
+  for(int i=0; i < top; i++) {
     std::cout << *(elements + i)  << "\n";
   }
 }
@@ -71,7 +71,7 @@ int Stack::pop() {
   if (isEmpty()) {
     return -1;
   }
-  return elements[size--];
+  return elements[top--];
 }
 
 int main() {
